@@ -34,7 +34,7 @@ export const useElevator = (numberOfElevators: number) => {
         elevator.targetFloors.shift();
       }
     } else {
-      elevator.direction = 0;
+      elevator.direction = DIRECTION.IDLE;
     }
   };
 
@@ -93,6 +93,7 @@ export const useElevator = (numberOfElevators: number) => {
   }, [elevators]);
 
   return {
+    elevators,
     statusList,
     pickup,
     update,
