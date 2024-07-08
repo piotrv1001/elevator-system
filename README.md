@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Elevator System
 
-## Getting Started
+This project is a simulation of an elevator control system that can manage up to 16 elevators. The system allows for pickup requests, state updates, simulation steps, and status checks through a shared control panel.
 
-First, run the development server:
+![App Screenshot](public/elevator_system.png)
+
+## Hosting
+
+The application is hosted publicly and can be accessed at [elevator-system-app.vercel.app](https://elevator-system-app.vercel.app/ "The elevator system app").
+
+## Algorithm
+
+The elevator control system uses a First-Come, First-Serve (FCFS) approach with some optimizations for nearest elevator selection. When an elevator is requested (pickup), the system:
+1. Identifies the nearest elevator that can handle the request based on the direction and current floor.
+2. Adds the requested floor to the elevator's list of target floors.
+3. Sorts the target floors based on the current direction of the elevator to ensure efficient handling of requests.
+
+The system steps the simulation forward by:
+1. Moving each elevator one floor closer to its next target floor.
+2. Updating the elevator's direction based on the movement.
+
+## System Requirements
+
+- Node.js 18.17 or later
+- macOS, Windows and Linux all supported
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Vitest (for testing)
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/piotrv1001/elevator-system.git
+cd elevator-system
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+## Usage
+
+To start the development server, run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running Tests
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run the tests, run:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run test
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+The project uses the Next.js App Router. The most important folders and files include:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `src/`
+  - `app/`: Next.js file-based routing
+  - `components/`: React components
+  - `hooks/`: Custom React hooks
+  - `lib/`: External libraries
+  - `types/`: Typescript type definitions
+  - `schemas/`: Zod schemas for form validation
+- `__tests__/`: Unit tests
+- `public/`: Public assets (images, videos etc.)
+- `constants.ts`: Global constants
+- `package.json`: Project dependencies
